@@ -19,24 +19,26 @@ const ExpenseSummary: React.FC = () => {
   const expensesByCategory = calculateExpensesByCategory(expenses);
 
   return (
-    <Card className="mb-4">
-      <Card.Body>
-        <Card.Title className="text-center fw-bold fs-4">
-          Expense Summary
-        </Card.Title>
-        <ListGroup variant="flush">
-          <ListGroup.Item>
-            Total Expenses: ${formatPrice(totalExpenses)}
-          </ListGroup.Item>
-          {Object.keys(expensesByCategory).map((category) => (
-            <ListGroup.Item key={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}: $
-              {formatPrice(expensesByCategory[category])}
+    <div className="d-flex justify-content-center align-items-center">
+      <Card className="mb-4">
+        <Card.Body>
+          <Card.Title className="text-center fw-bold fs-4">
+            Expense Summary
+          </Card.Title>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              Total Expenses: <strong>${formatPrice(totalExpenses)}</strong>
             </ListGroup.Item>
-          ))}
-        </ListGroup>
-      </Card.Body>
-    </Card>
+            {Object.keys(expensesByCategory).map((category) => (
+              <ListGroup.Item key={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}: $
+                {formatPrice(expensesByCategory[category])}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 

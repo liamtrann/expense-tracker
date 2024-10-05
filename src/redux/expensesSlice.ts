@@ -1,9 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { Expense } from "../type";
 
-// Define the initial state type
 const initialState: Expense[] = JSON.parse(
   localStorage.getItem("expenses") || "[]"
+);
+
+export const loadExpenses = createAsyncThunk(
+  "expenses/loadExpenses",
+  async () => {
+    const expenses = JSON.parse(localStorage.getItem("expenses") || "[]");
+    return expenses as Expense[];
+  }
 );
 
 const expensesSlice = createSlice({

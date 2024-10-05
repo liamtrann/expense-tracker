@@ -26,7 +26,7 @@ const ExpenseTable: React.FC = () => {
 
   return (
     <div>
-      <h2>Expense List</h2>
+      <h2 style={{ textAlign: "center" }}>Expense List</h2>
       <DataTable
         columns={columns}
         data={tableData}
