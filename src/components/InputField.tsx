@@ -9,6 +9,7 @@ interface InputFieldProps {
   type?: string;
   min?: number;
   step?: number;
+  placeholder?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -19,6 +20,7 @@ const InputField: React.FC<InputFieldProps> = ({
   type = "text",
   min,
   step,
+  placeholder,
 }) => {
   return (
     <Form.Group controlId={label} className="mb-3">
@@ -31,6 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
         required={required}
         min={min}
         step={step}
+        placeholder={placeholder}
       />
     </Form.Group>
   );

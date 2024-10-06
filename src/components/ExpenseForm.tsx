@@ -4,7 +4,9 @@ import SelectInput from "./SelectInput";
 import { Button, Form } from "react-bootstrap";
 import DatePickerField from "./DatePickerField";
 import { Expense } from "../type";
+import { autofillDataOptions } from "../utils";
 
+// Possible categories
 const categoryOptions = [
   { value: "Food", label: "Food" },
   { value: "Transportation", label: "Transportation" },
@@ -43,6 +45,13 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({
     setExpense({ name: "", price: "", category: "", date: "" });
   };
 
+  // Function to autofill the form with random data
+  const handleAutofill = () => {
+    const randomIndex = Math.floor(Math.random() * autofillDataOptions.length);
+    const randomExpense = autofillDataOptions[randomIndex];
+    setExpense(randomExpense);
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <InputField
@@ -79,6 +88,15 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({
 
       <Button variant="primary" type="submit" className="mt-3">
         {mode === "edit" ? "Edit" : "Add"}
+      </Button>
+
+      {/* Autofill Button */}
+      <Button
+        variant="secondary"
+        onClick={handleAutofill}
+        className="mt-3 ms-2"
+      >
+        Autofill
       </Button>
     </Form>
   );
