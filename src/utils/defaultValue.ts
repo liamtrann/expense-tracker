@@ -42,3 +42,11 @@ export const ItemOptions = [
   { value: 50, label: "50" },
   { value: 100, label: "100" },
 ];
+
+export const categoryOptions = [
+  { value: "Food", label: "Food" },
+  { value: "Transportation", label: "Transportation" },
+  { value: "Entertainment", label: "Entertainment" },
+  { value: "Utilities", label: "Utilities" },
+  { value: "Other", label: "Other" },
+];

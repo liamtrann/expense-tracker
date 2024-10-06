@@ -4,20 +4,12 @@ import { Link } from "react-router-dom";
 import DataTable from "./DataTable";
 import { deleteExpense, RootState } from "../redux";
 import { Expense } from "../type";
-import { formatPrice } from "../utils";
+import { columns, formatPrice, ItemOptions } from "../utils";
 import ConfirmationModal from "../modals/ConfirmModal";
 import { Button } from "react-bootstrap";
 import SelectInput from "./SelectInput";
 import MotionWrapper from "./MotionWrapper";
 import InputField from "./InputField";
-
-const ItemOptions = [
-  { value: 5, label: "5" },
-  { value: 10, label: "10" },
-  { value: 25, label: "25" },
-  { value: 50, label: "50" },
-  { value: 100, label: "100" },
-];
 
 const ExpenseTable: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -53,8 +45,6 @@ const ExpenseTable: React.FC = () => {
   const filteredExpenses = expenses.filter((expense: Expense) =>
     expense.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  const columns = ["Name", "Price", "Category", "Date"];
 
   const totalPages = Math.ceil(filteredExpenses.length / itemsPerPage);
 

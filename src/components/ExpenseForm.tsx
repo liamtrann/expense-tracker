@@ -4,16 +4,7 @@ import SelectInput from "./SelectInput";
 import { Button, Form } from "react-bootstrap";
 import DatePickerField from "./DatePickerField";
 import { Expense } from "../type";
-import { autofillDataOptions } from "../utils";
-
-// Possible categories
-const categoryOptions = [
-  { value: "Food", label: "Food" },
-  { value: "Transportation", label: "Transportation" },
-  { value: "Entertainment", label: "Entertainment" },
-  { value: "Utilities", label: "Utilities" },
-  { value: "Other", label: "Other" },
-];
+import { autofillDataOptions, categoryOptions } from "../utils";
 
 interface ExpenseFormProps {
   onSubmit: (expense: Expense) => void;
