@@ -2,7 +2,7 @@ import React, { ChangeEvent } from "react";
 import { Form } from "react-bootstrap";
 
 interface Option {
-  value: string;
+  value: string | number;
   label: string;
 }
 
@@ -26,7 +26,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
       <Form.Label className="fw-bold">{label}</Form.Label>
       <Form.Select value={value} onChange={onChange} required={required}>
         {/* Placeholder option prompting user to select a value */}
-        <option value="">Select a {label.toLowerCase()}</option>
+        {label && <option value="">Select a {label.toLowerCase()}</option>}
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

@@ -2,15 +2,11 @@ import React from "react";
 import ExpenseTable from "../components/ExpenseTable";
 import ExpenseSummary from "../components/ExpenseSummary";
 import ExpenseChart from "../components/ExpenseChart";
-import { motion } from "framer-motion";
+import MotionWrapper from "../components/MotionWrapper";
 
 const ExpenseList: React.FC = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-    >
+    <MotionWrapper>
       <ExpenseTable />
       <div className="d-flex flex-wrap justify-content-between align-items-start mt-4">
         <div className="flex-grow-1 d-flex justify-content-center mb-2 mb-md-0">
@@ -20,7 +16,7 @@ const ExpenseList: React.FC = () => {
           <ExpenseChart />
         </div>
       </div>
-    </motion.div>
+    </MotionWrapper>
   );
 };
 
