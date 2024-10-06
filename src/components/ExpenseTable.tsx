@@ -9,6 +9,7 @@ import ConfirmationModal from "../modals/ConfirmModal";
 import { Button } from "react-bootstrap";
 import SelectInput from "./SelectInput";
 import MotionWrapper from "./MotionWrapper";
+import InputField from "./InputField";
 
 const ItemOptions = [
   { value: 5, label: "5" },
@@ -23,6 +24,7 @@ const ExpenseTable: React.FC = () => {
   const [selectedExpenseId, setSelectedExpenseId] = useState<string>("");
   const [itemsPerPage, setItemsPerPage] = useState<number>(5); // Default items per page
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState<string>(""); // State for search input
 
   const expenses = useSelector((state: RootState) => state.expenses);
   const dispatch = useDispatch();
@@ -44,11 +46,19 @@ const ExpenseTable: React.FC = () => {
     setShowModal(false);
   };
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredExpenses = expenses.filter((expense: Expense) =>
+    expense.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const columns = ["Name", "Price", "Category", "Date"];
 
-  const totalPages = Math.ceil(expenses.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredExpenses.length / itemsPerPage);
 
-  const tableData = expenses.map((expense: Expense) => ({
+  const tableData = filteredExpenses.map((expense: Expense) => ({
     id: expense.id,
     name: expense.name,
     price: `$${formatPrice(expense.price)}`,
@@ -76,15 +86,26 @@ const ExpenseTable: React.FC = () => {
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Expense List</h2>
-      <div className="d-flex align-items-center mb-3">
-        <label className="me-2 fw-bold">Items per page: </label>
-        <SelectInput
-          label=""
-          value={itemsPerPage.toString()}
-          onChange={handleItemsPerPageChange}
-          options={ItemOptions}
-          required
-        />
+      <div className="d-flex justify-content-between">
+        <div className="d-flex align-items-center mb-3">
+          <label className="me-2 fw-bold">Page: </label>
+          <SelectInput
+            label=""
+            value={itemsPerPage.toString()}
+            onChange={handleItemsPerPageChange}
+            options={ItemOptions}
+            required
+          />
+        </div>
+        <div className="d-flex align-items-center mb-3">
+          <label className="ms-3 me-2 fw-bold">Search: </label>
+          <InputField
+            label=""
+            placeholder="Search by name"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
       <MotionWrapper key={currentPage}>
         <DataTable
