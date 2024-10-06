@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import DataTable from "./DataTable";
 import { deleteExpense, RootState } from "../redux";
 import { Expense } from "../type";
 import { formatPrice } from "../utils";
+import ConfirmationModal from "../modals/ConfirmModal";
 
 const ExpenseTable: React.FC = () => {
+  // State to handle modal visibility and selected expense for deletion
+  const [showModal, setShowModal] = useState(false);
+  const [selectedExpenseId, setSelectedExpenseId] = useState<string>("");
+
   const expenses = useSelector((state: RootState) => state.expenses);
   const dispatch = useDispatch();
 
-  // Dispatch an action to delete an expense by its ID
-  const handleDelete = (id: string) => {
-    dispatch(deleteExpense(id));
+  // Handle delete button click
+  const handleDeleteClick = (id: string) => {
+    setSelectedExpenseId(id);
+    setShowModal(true);
+  };
+
+  // Confirm deletion
+  const handleConfirmDelete = () => {
+    if (selectedExpenseId) {
+      dispatch(deleteExpense(selectedExpenseId));
+    }
+    setShowModal(false);
+  };
+
+  // Cancel the deletion
+  const handleCancelDelete = () => {
+    setSelectedExpenseId("");
+    setShowModal(false);
   };
 
   const columns = ["Name", "Price", "Category", "Date"];
@@ -33,8 +53,17 @@ const ExpenseTable: React.FC = () => {
         columns={columns}
         data={tableData}
         onEdit={(id) => <Link to={`/edit/${id}`}>Edit</Link>}
-        onDelete={handleDelete}
+        onDelete={handleDeleteClick}
         noDataMessage="No expenses available."
+      />
+      <ConfirmationModal
+        show={showModal}
+        title="Confirm Deletion"
+        message="Are you sure you want to delete this expense? This action cannot be undone."
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        confirmText="Delete"
+        cancelText="Cancel"
       />
     </div>
   );

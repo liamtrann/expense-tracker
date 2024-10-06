@@ -6,11 +6,11 @@ import DatePickerField from "./DatePickerField";
 import { Expense } from "../type";
 
 const categoryOptions = [
-  { value: "food", label: "Food" },
-  { value: "transportation", label: "Transportation" },
-  { value: "entertainment", label: "Entertainment" },
-  { value: "utilities", label: "Utilities" },
-  { value: "other", label: "Other" },
+  { value: "Food", label: "Food" },
+  { value: "Transportation", label: "Transportation" },
+  { value: "Entertainment", label: "Entertainment" },
+  { value: "Utilities", label: "Utilities" },
+  { value: "Other", label: "Other" },
 ];
 
 interface ExpenseFormProps {
