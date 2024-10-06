@@ -5,6 +5,8 @@ import { Card } from "react-bootstrap";
 import ExpenseForm from "../components/ExpenseForm";
 import { editExpense, RootState } from "../redux";
 import { Expense } from "../type";
+import { motion } from "framer-motion";
+
 const EditExpense: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -24,18 +26,24 @@ const EditExpense: React.FC = () => {
   if (!expense) return <p>Expense not found!</p>;
 
   return (
-    <Card className="mb-4">
-      <Card.Body>
-        <Card.Title className="text-center fw-bold fs-4">
-          Edit Expense
-        </Card.Title>
-        <ExpenseForm
-          onSubmit={handleEditExpense}
-          initialData={expense}
-          mode="edit"
-        />
-      </Card.Body>
-    </Card>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+    >
+      <Card className="mb-4">
+        <Card.Body>
+          <Card.Title className="text-center fw-bold fs-4">
+            Edit Expense
+          </Card.Title>
+          <ExpenseForm
+            onSubmit={handleEditExpense}
+            initialData={expense}
+            mode="edit"
+          />
+        </Card.Body>
+      </Card>
+    </motion.div>
   );
 };
 
