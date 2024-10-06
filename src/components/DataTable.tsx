@@ -26,6 +26,7 @@ const DataTable: React.FC<DataTableProps> = ({
             {columns.map((column, index) => (
               <th key={index}>{column}</th>
             ))}
+            {/* Conditionally add Actions column if edit or delete callbacks are present */}
             {onEdit || onDelete ? <th>Actions</th> : null}
           </tr>
         </thead>
@@ -37,13 +38,14 @@ const DataTable: React.FC<DataTableProps> = ({
                 <td>{item.price}</td>
                 <td>{item.category}</td>
                 <td>{item.date}</td>
+                {/* Render edit and delete buttons only if their respective callbacks are provided */}
                 {(onEdit || onDelete) && (
                   <td>
                     {onEdit && (
                       <Button
                         variant="warning"
-                        as={Link as any}
-                        to={`/edit/${item.id}`}
+                        as={Link as any} // Using Link to navigate to edit page
+                        to={`/edit/${item.id}`} // Dynamically constructing URL based on item ID
                       >
                         Edit
                       </Button>
@@ -51,7 +53,7 @@ const DataTable: React.FC<DataTableProps> = ({
                     {onDelete && (
                       <Button
                         variant="danger"
-                        onClick={() => onDelete?.(item.id ?? "")}
+                        onClick={() => onDelete?.(item.id ?? "")} // Handle delete action by invoking callback
                       >
                         Delete
                       </Button>
@@ -61,6 +63,7 @@ const DataTable: React.FC<DataTableProps> = ({
               </tr>
             ))
           ) : (
+            // Display a message if no data is available, adjusting colspan based on the presence of the Actions column
             <tr>
               <td
                 colSpan={columns.length + (onEdit || onDelete ? 1 : 0)}

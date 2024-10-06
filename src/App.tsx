@@ -4,6 +4,7 @@ import { Container, Navbar, Nav } from "react-bootstrap";
 import ExpenseList from "./pages/ExpenseList";
 import AddExpense from "./pages/AddExpense";
 import EditExpense from "./pages/EditExpense";
+import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/" element={<ExpenseList />} />
           <Route path="/add" element={<AddExpense />} />
           <Route path="/edit/:id" element={<EditExpense />} />
+          <Route path="*" element={<NotFound />} /> {/* 404 Route */}
         </Routes>
       </Container>
     </Router>

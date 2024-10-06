@@ -25,6 +25,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
     <Form.Group controlId={label} className="mb-3">
       <Form.Label className="fw-bold">{label}</Form.Label>
       <Form.Select value={value} onChange={onChange} required={required}>
+        {/* Placeholder option prompting user to select a value */}
         <option value="">Select a {label.toLowerCase()}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>

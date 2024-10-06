@@ -10,16 +10,18 @@ const ExpenseTable: React.FC = () => {
   const expenses = useSelector((state: RootState) => state.expenses);
   const dispatch = useDispatch();
 
+  // Dispatch an action to delete an expense by its ID
   const handleDelete = (id: string) => {
     dispatch(deleteExpense(id));
   };
 
   const columns = ["Name", "Price", "Category", "Date"];
 
+  // Map expense data to match the format expected by the DataTable component
   const tableData = expenses.map((expense: Expense) => ({
     id: expense.id,
     name: expense.name,
-    price: `$${formatPrice(expense.price)}`,
+    price: `$${formatPrice(expense.price)}`, // Format price with a dollar sign
     category: expense.category,
     date: expense.date,
   }));

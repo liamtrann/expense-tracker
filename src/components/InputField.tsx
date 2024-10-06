@@ -22,6 +22,7 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
   return (
     <Form.Group controlId={label} className="mb-3">
+      {/* Input field with dynamic properties for type, value, and validation */}
       <Form.Label className="fw-bold">{label}</Form.Label>
       <Form.Control
         type={type}

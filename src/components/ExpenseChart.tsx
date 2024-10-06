@@ -12,40 +12,48 @@ import {
   Legend,
 } from "chart.js";
 
+// Register required chart.js components
 Chart.register(LinearScale, CategoryScale, BarElement, Tooltip, Legend);
 
 const ExpenseChart: React.FC = () => {
+  // Fetching expenses from Redux store
   const expenses: Expense[] = useSelector((state: RootState) => state.expenses);
 
+  // Extract unique categories from expenses
   const categories: string[] = [
     ...new Set(expenses.map((exp) => exp.category)),
   ];
 
+  // Calculate the total amount for each category
   const categoryTotals: number[] = categories.map((category) =>
     expenses
       .filter((exp) => exp.category === category)
       .reduce((acc: number, exp: Expense) => acc + Number(exp.price), 0)
   );
 
+  // Predefined colors for bar chart
   const colors = ["red", "yellow", "blue", "green", "orange", "purple"];
 
+  // Assign colors to each category's total
   const datasetColors = categoryTotals.map(
     (_, index) => colors[index % colors.length]
   );
 
+  // Chart data setup
   const data = {
-    labels: categories,
+    labels: categories, // Categories will be the x-axis labels
     datasets: [
       {
         label: "Expenses by Category",
-        data: categoryTotals,
-        backgroundColor: datasetColors,
-        borderColor: datasetColors.map((color) => color.replace("0.6", "1")),
+        data: categoryTotals, // Y-axis data
+        backgroundColor: datasetColors, // Assign background colors
+        borderColor: datasetColors.map((color) => color.replace("0.6", "1")), // Adjust opacity for borders
         borderWidth: 1,
       },
     ],
   };
 
+  // Chart options to start y-axis at 0
   const options = {
     scales: {
       y: {
