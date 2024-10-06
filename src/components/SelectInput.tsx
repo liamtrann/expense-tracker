@@ -12,6 +12,7 @@ interface SelectInputProps {
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   options: Option[];
   required?: boolean;
+  className?: string;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -20,9 +21,10 @@ const SelectInput: React.FC<SelectInputProps> = ({
   onChange,
   options,
   required = false,
+  className,
 }) => {
   return (
-    <Form.Group controlId={label} className="mb-3">
+    <Form.Group controlId={label} className={`mb-3 ${className}`}>
       <Form.Label className="fw-bold">{label}</Form.Label>
       <Form.Select value={value} onChange={onChange} required={required}>
         {/* Placeholder option prompting user to select a value */}

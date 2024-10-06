@@ -78,7 +78,7 @@ const ExpenseTable: React.FC = () => {
       <h2 style={{ textAlign: "center" }}>Expense List</h2>
       <div className="d-flex justify-content-between">
         <div className="d-flex align-items-center mb-3">
-          <label className="me-2 fw-bold">Page: </label>
+          <label className="me-1 fw-bold">Page </label>
           <SelectInput
             label=""
             value={itemsPerPage.toString()}
@@ -88,7 +88,6 @@ const ExpenseTable: React.FC = () => {
           />
         </div>
         <div className="d-flex align-items-center mb-3">
-          <label className="ms-3 me-2 fw-bold">Search: </label>
           <InputField
             label=""
             placeholder="Search by name"

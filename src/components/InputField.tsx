@@ -10,6 +10,7 @@ interface InputFieldProps {
   min?: number;
   step?: number;
   placeholder?: string;
+  className?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -21,9 +22,10 @@ const InputField: React.FC<InputFieldProps> = ({
   min,
   step,
   placeholder,
+  className,
 }) => {
   return (
-    <Form.Group controlId={label} className="mb-3">
+    <Form.Group controlId={label} className={`mb-3 ${className}`}>
       {/* Input field with dynamic properties for type, value, and validation */}
       <Form.Label className="fw-bold">{label}</Form.Label>
       <Form.Control
