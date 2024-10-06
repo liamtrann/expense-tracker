@@ -1,5 +1,20 @@
 A personal expense tracker built with React and Redux for managing personal expenses. This application allows users to add, view, edit, and delete expense entries, providing an intuitive user experience with a responsive design.
 
+
+## Overview
+
+This application allows users to manage their personal expenses efficiently. Users can add, edit, delete, search for expenses, and control the number of items displayed per page using pagination.
+
+- **Add Expense**: Click the **Add Expense** button in the navigation bar to add a new expense. You can either fill out the form manually or use the **Auto Fill** feature to quickly populate the fields.
+  
+- **Edit Expense**: To edit an existing expense, navigate to the expense list, and click the **Edit** button next to the desired expense. Make your changes and save them.
+
+- **Delete Expense**: If you want to remove an expense, click the **Delete** button next to the expense you wish to delete. Confirm the deletion when prompted.
+
+- **Search Expenses**: Use the search bar to find an expense by its name. Simply type in the name of the expense you are looking for, and the list will filter accordingly.
+
+- **Pagination**: Choose how many items you want to display per page. Use the pagination controls to navigate through your expenses.
+
 ## Features
 
 - Add new expense entries
