@@ -34,7 +34,7 @@ Before you begin, ensure you have the following installed on your machine:
 ## Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/expense-tracker.git
+git clone https://github.com/liamtrann/expense-tracker
 cd expense-tracker
 
 ```
