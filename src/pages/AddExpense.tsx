@@ -5,7 +5,7 @@ import ExpenseForm from "../components/ExpenseForm";
 import { useNavigate } from "react-router-dom";
 import { addExpense } from "../redux";
 import { Expense } from "../type";
-import MotionWrapper from "../components/MotionWrapper";
+import MotionWrapper from "../components/fields/MotionWrapper";
 
 const AddExpense: React.FC = () => {
   const dispatch = useDispatch();

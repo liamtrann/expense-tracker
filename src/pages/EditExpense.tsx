@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 import ExpenseForm from "../components/ExpenseForm";
 import { editExpense, RootState } from "../redux";
 import { Expense } from "../type";
-import MotionWrapper from "../components/MotionWrapper";
+import MotionWrapper from "../components/fields/MotionWrapper";
 
 const EditExpense: React.FC = () => {
   const { id } = useParams<{ id: string }>();

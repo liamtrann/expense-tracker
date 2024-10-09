@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import InputField from "./InputField";
-import SelectInput from "./SelectInput";
+import InputField from "./fields/InputField";
+import SelectInput from "./fields/SelectInput";
 import { Button, Form } from "react-bootstrap";
-import DatePickerField from "./DatePickerField";
+import DatePickerField from "./fields/DatePickerField";
 import { Expense } from "../type";
 import { autofillDataOptions, categoryOptions } from "../utils";
 

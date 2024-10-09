@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Expense } from "../type";
+import { Expense } from "../../type";
 
 interface DataTableProps {
   columns: string[];

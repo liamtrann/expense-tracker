@@ -1,15 +1,17 @@
+// src/components/ExpenseTable.tsx
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import DataTable from "./DataTable";
+import DataTable from "./fields/DataTable";
 import { deleteExpense, RootState } from "../redux";
 import { Expense } from "../type";
 import { columns, formatPrice, ItemOptions } from "../utils";
 import ConfirmationModal from "../modals/ConfirmModal";
 import { Button } from "react-bootstrap";
-import SelectInput from "./SelectInput";
-import MotionWrapper from "./MotionWrapper";
-import InputField from "./InputField";
+import SelectInput from "./fields/SelectInput";
+import MotionWrapper from "./fields/MotionWrapper";
+import InputField from "./fields/InputField";
+import Pagination from "./fields/Pagination";
 
 const ExpenseTable: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -105,18 +107,12 @@ const ExpenseTable: React.FC = () => {
           noDataMessage="No expenses available."
         />
       </MotionWrapper>
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <Button
-            key={index}
-            variant={index + 1 === currentPage ? "primary" : "secondary"}
-            onClick={() => handlePageChange(index + 1)}
-            className="m-1"
-          >
-            {index + 1}
-          </Button>
-        ))}
-      </div>
+      {/* Reusable Pagination Component */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
       <ConfirmationModal
         show={showModal}
         title="Confirm Deletion"

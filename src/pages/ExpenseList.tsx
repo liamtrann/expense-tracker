@@ -2,7 +2,7 @@ import React from "react";
 import ExpenseTable from "../components/ExpenseTable";
 import ExpenseSummary from "../components/ExpenseSummary";
 import ExpenseChart from "../components/ExpenseChart";
-import MotionWrapper from "../components/MotionWrapper";
+import MotionWrapper from "../components/fields/MotionWrapper";
 
 const ExpenseList: React.FC = () => {
   return (
